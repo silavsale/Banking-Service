@@ -27,7 +27,6 @@ class SavingAccount extends Account {
         if (!curAccStatus && (balance + deposit) >= 25) {
             curAccStatus = true;
             super.makeDeposit(deposit);
-            System.out.println("Account active again");
         } else if (curAccStatus) {
             super.makeDeposit(deposit);
         } else {
@@ -36,13 +35,8 @@ class SavingAccount extends Account {
     }
 
     public void doMonthlyReport() {
-        //        balance = balance - serviceCharge;
-        //        calculateInterest();
-        //        numWithDrawThMth = 0;
-        //        numDepsThMth = 0;
-        //        serviceCharge = 0;
         if (numWithDrawThMth > 4) {
-            serviceCharge = serviceCharge + numWithDrawThMth;
+            serviceCharge += numWithDrawThMth;
             super.doMonthlyReport();
 
         }

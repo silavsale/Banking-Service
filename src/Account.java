@@ -28,15 +28,15 @@ abstract class Account {
 
     // A method that accepts an argument for the amount of the deposit.
     public void makeDeposit(double deposit) {
-        balance = balance + deposit;
-        totDepsThMth = totDepsThMth + deposit;
+        balance += deposit;
+        totDepsThMth += deposit;
         numDepsThMth++;
     }
 
     // A method that accepts an argument for the amount of the withdrawal.
     public void makeWithdraw(double withdrawal) {
-        balance = balance - withdrawal;
-        totWithDrawThMth = totWithDrawThMth + withdrawal;
+        balance -= withdrawal;
+        totWithDrawThMth += withdrawal;
         numWithDrawThMth++;
     }
 
@@ -45,7 +45,7 @@ abstract class Account {
     public double calculateInterest() {
         mntInterRate = (annualIntRate / 12);
         monthlyInterest = balance * mntInterRate;
-        balance = balance + mntInterRate;
+        balance += mntInterRate;
 
         return balance;
     }
@@ -55,7 +55,20 @@ abstract class Account {
     //      2) calls the calculateInterest method
     //      3) sets the number of withdrawals, number of deposits, monthly service charges to zero.
     public void doMonthlyReport() {
-        balance = balance - serviceCharge;
+        System.out.println(getClass().toString());
+        System.out.println("The starting balance this month was: $" + strBlThMth);
+        System.out.println("The total amount of deposits: $" + totDepsThMth);
+        System.out.println("The total amount of withdrawals: $" + totWithDrawThMth);
+        System.out.println("The total amount of service charge: $" + serviceCharge);
+        System.out.println("The current balance: $" + balance);
+        if (curAccStatus) {
+            System.out.println("The account is active.");
+        } else {
+            System.out.println("The account is inactive.");
+        }
+
+        balance -= serviceCharge;
+        strBlThMth += balance;
         calculateInterest();
         numWithDrawThMth = 0;
         numDepsThMth = 0;
